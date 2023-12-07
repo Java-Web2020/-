@@ -1,0 +1,8 @@
+<!--pages/login/login.wxml-->
+<view >
+    <image class="bj" src="../../img/login.jpg"></image>
+</view>
+<view class="login">
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style="width: 80%; border-radius: 25px;" type="primary">手机号快捷登录</button>
+</view>
+

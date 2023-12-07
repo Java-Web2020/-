@@ -1,0 +1,117 @@
+<!--pages/uese_info/uese_info.wxml-->
+
+<scroll-view   scroll-y style="height:1400rpx;">
+  <image style="  width: 100%; height: 300rpx; " src="https://www.jzdcnswt.com/media/20231204110211.jpg"></image>
+  <!-- <scroll-view  scroll-x>
+<view class="swiper-tab">
+ <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">选项一</view>
+ <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">选项二</view>
+ <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">选项三</view>
+ <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">选项三</view>
+ <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">选项三</view>
+ <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">选项三</view>
+ <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">选项三</view>
+</view> 
+</scroll-view> -->
+  <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <view  class="scroll-view-item_H demo-text-1 {{currentTab=='全部' ? 'on' : ''}}" data-current="全部" bindtap="swichNav">全部</view>
+    <view wx:for="{{filter}}" class="scroll-view-item_H demo-text-1 {{currentTab==item.Complaint ? 'on' : ''}}" data-current="{{item.Complaint}}" bindtap="swichNav">{{item.Complaint}}</view>
+    
+  </scroll-view>
+  <view bindtap="open"  class="box" wx:for="{{list}}">
+  <!-- 右侧信息栏 -->
+  <view class="box1"> 
+      <view class="map" bindtap="dh" data-latitude="{{item.latitude}}"data-longitude="{{item.longitude}}"data-map="{{item.map}}">
+        {{item.map}}
+    </view>
+    <view class="test">
+      <view>
+      姓名：{{item.username}}
+    </view>
+    <view bindtap="dianhua" data-phone="{{item.phone}}">
+      手机号：{{item.phone}}
+    </view>
+    <view>
+      {{item.ceeated_time}}
+    </view>
+    <view class="yijian">
+      {{item.propose}}
+    </view>
+    <view >
+      诉求类型：{{item.Complaint}}
+    </view>
+    <view class=" {{item.status=='未处理' ? 'on1' : ''}}">
+      {{item.status}}
+    </view>
+    </view>
+    
+    <view class="_btn">
+
+       <button  style="height: 30rpx; font-size: 20rpx; line-height: 30rpx; float: right;" wx:if="{{item.status!='未处理'}}"  
+      data-id="{{item.id}}"
+      data-address="{{item.address}}" 
+      data-ceeated_time="{{item.ceeated_time}}" 
+      data-head_port="{{item.head_port}}" 
+      data-latitude="{{item.latitude}}" 
+      data-longitude="{{item.longitude}}" 
+      data-map="{{item.map}}" 
+      data-phone="{{item.phone}}" 
+      data-propose="{{item.propose}}" 
+      data-reply="{{item.reply}}" 
+      data-status="{{item.status}}" 
+      data-updated_time="{{item.updated_time}}" 
+      data-username="{{item.username}}" 
+      data-vido="{{item.vido}}" 
+      data-picture_reply_url="{{item.picture_reply_url}}" 
+       bindtap="chuli" type="primary" size="mini">详情</button>
+      <button style="height: 30rpx; font-size: 20rpx; line-height: 30rpx; float: right ;" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="del"   type="warn" size="mini">删除</button>
+      <button  style="height: 30rpx; font-size: 20rpx; line-height: 30rpx; float: right;" wx:if="{{item.status=='未处理'}}"  
+      data-id="{{item.id}}"
+      data-address="{{item.address}}" 
+      data-ceeated_time="{{item.ceeated_time}}" 
+      data-head_port="{{item.head_port}}" 
+      data-latitude="{{item.latitude}}" 
+      data-longitude="{{item.longitude}}" 
+      data-map="{{item.map}}" 
+      data-phone="{{item.phone}}" 
+      data-propose="{{item.propose}}" 
+      data-reply="{{item.reply}}" 
+      data-status="{{item.status}}" 
+      data-updated_time="{{item.updated_time}}" 
+      data-username="{{item.username}}" 
+      data-vido="{{item.vido}}" 
+      data-picture_reply_url="{{item.picture_reply_url}}" 
+       bindtap="chuli" type="primary" size="mini">处理</button>
+    </view>
+    
+    </view>
+  </view> 
+  <view style="width: 100%; height: 200rpx;"></view>
+</scroll-view>
+<!-- <view wx:if="{{show}}"  class="mydialog"> -->
+<!--对话框标题-->
+<!-- <view class="head">
+<label>
+回复内容<image bindtap="close" src="/pages/images/Close.png"></image>
+</label>
+</view> -->
+<!-- <form action="" bindsubmit="_tijiao"> -->
+<!-- <radio-group bindchange="radioChange">
+  <label class="radio">
+      <radio value="r1" checked="true"/>已处理
+    </label>
+    <label class="radio">
+      <radio value="r2" />协商处理
+    </label>
+</radio-group> -->
+<!-- <radio-group class="radio-group" bindchange="radioChange" name="radio_group">
+                <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                    <text>{{item.value}}</text>
+                </radio>
+</radio-group>
+<textarea name="reply" 	placeholder="输入回复的内容" fixed class="input"  style="width:230px;height: 100px;text-align: left; background-color: antiquewhite;"/>
+<button class="dialog-btn" form-type="submit">保存</button>
+</form>
+
+
+</view> -->

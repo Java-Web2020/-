@@ -1,0 +1,11 @@
+<!--pages/qiehuan/qiehuan.wxml-->
+<form  action="" >
+  <mp-cells title="请选择账号类型">
+
+<mp-checkbox-group  prop="radio" multi="{{false}}" bindchange="radioChange">
+    <mp-checkbox   wx:for="{{radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+</mp-checkbox-group>
+</mp-cells>
+<button bindtap="_tijiao" type="primary" form-type="submit" style="margin-top: 50%;">提交</button>
+</form>
+

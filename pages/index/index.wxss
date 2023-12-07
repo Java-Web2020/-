@@ -1,0 +1,32 @@
+/* .weui-cell__bd{
+  font-weight: bold;
+} */
+.yjsq{
+  display: flex;
+  margin-top: 30rpx;
+}
+.on{
+  background-color: #64C6E2;
+  color: white;
+}
+.weui-uploader__title{
+  display: none;
+}
+
+.weui-uploader__input-box{
+  border-radius: 25rpx;
+  margin-left: 20rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+.weui-uploader__file{
+  border-radius: 25rpx;
+  margin-left: 20rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+.weui-uploader__bd{
+  width: 300rpx;
+  height: 200rpx;
+}
+  

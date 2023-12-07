@@ -1,0 +1,8 @@
+<!--pages/video/video.wxml-->
+<view class="prew_video" >
+  <video 
+      
+      src="{{vido}}" 
+      picture-in-picture-mode="push">
+      </video>
+</view>

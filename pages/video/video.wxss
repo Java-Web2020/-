@@ -1,0 +1,16 @@
+/* pages/video/video.wxss */
+.prew_video{
+
+  display: flex;
+
+  align-items: center; /*垂直居中*/
+
+  justify-content: center; /*居中对齐*/
+
+  position: relative;
+
+  background-color: #fff;
+
+  margin-top: 50%;
+
+}

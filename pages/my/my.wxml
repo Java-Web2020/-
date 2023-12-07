@@ -1,0 +1,4 @@
+<!--pages/my/my.wxml-->
+<button hidden="{{openid!=''}}"  bindtap="dl">登录</button>
+
+<button hidden="{{openid==''}}"  bindtap="edit">退出登录</button>

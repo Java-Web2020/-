@@ -1,0 +1,76 @@
+<image style="  width: 100%; height: 300rpx; " src="https://www.jzdcnswt.com/media/20231204110211.jpg"></image>
+<form action="" bindsubmit="_tijiao">
+<mp-cells  ext-class="my-cells" title="填写信息">
+    <mp-cell>
+        <view style="float: left; font-weight: bold;">姓名：</view>
+        <input name="username"  style="float: left;" type="text"/>
+        <view style="font-size: 25rpx;" slot="footer">请输入姓名</view>
+    </mp-cell>
+    <mp-cell>
+        <view  style="float: left; font-weight: bold;">手机号：</view>
+        <input name="phone" style="float: left;" type="text"/>
+        <view style="font-size: 20rpx;" slot="footer">请输入正确号码</view>
+        <view style="font-size: 20rpx;" slot="footer">固定电话请加区号</view>
+        <view style="font-size: 20rpx;" slot="footer">例01084340592</view>
+    </mp-cell>
+    <mp-cell>
+        <view style="float: left; font-weight: bold;">住址：</view>
+        <input  name="address" style="float: left;" type="text"/>
+        <view style="font-size: 25rpx;" slot="footer">请输入住址</view>
+    </mp-cell>
+</mp-cells>
+<!-- 意见与建议&我的诉求 -->
+<view class="yjsq" style="width: 100%; height: 70rpx; line-height: 70rpx;">
+
+<button class="{{currentTab=='1' ? 'on' : ''}}" bindtap="sqiu" data-index="1"  style=" float: left; width: 40%; font-size: 30rpx;">我的诉求</button>
+<button class="{{currentTab=='2' ? 'on' : ''}}" bindtap="yjian" data-index="2" style="float: left; width: 40%;  font-size: 30rpx;  ">意见与建议</button>
+</view>
+
+<mp-cells  ext-class="my-cells">
+    <mp-cell>
+        <view wx:if="{{show}}" style="float: left; font-weight: bold;">诉求类型：</view>
+        <view wx:if="{{!show}}" style="float: left; font-weight: bold;">建议类型：</view>
+        <picker style="float: left;" bindchange="bindPickerChange"  data-id='{{objectArray[index].id}}' range-key="Complaint" value="{{idx}}" range="{{objectArray}}">
+            <view class="picker">
+              {{objectArray[index].Complaint}}
+            </view>
+          </picker>
+        <view wx:if="{{show}}" style="font-size: 25rpx;" slot="footer">请选择诉求类型></view>
+        <view wx:if="{{!show}}" style="font-size: 25rpx;" slot="footer">请选择建议类型></view>
+    </mp-cell>
+    <mp-cell>
+        <view style="float: left; font-weight: bold;">问题及建议:</view>
+        <textarea 	placeholder="请输入问题及建议 (100字以内)" name="propose"  style=" margin-left: 14rpx; width: 400rpx;padding-left:5%;padding-top: 20rpx; font-size: 23rpx; height: 100px; float: left;  background-color: #E5E5E5;border-radius: 23rpx;" class="input" />
+    </mp-cell>
+    <mp-cell>
+        <view style="float: left; font-weight: bold;">图片上传：</view>
+        <mp-uploader hidden="{{pic_url==''}}" style="background-color: #eeedff;" files="{{files}}" bindselect="_selectImage" binddelete="_deleteImage" upload="{{uplaodFile}}">
+        </mp-uploader>
+    </mp-cell>
+
+              <!-- 图片地址 -->
+              <input style="display: none;" style="display: none;" name="pic_url" value="{{pic_url}}" class="input" type="text" />
+          <!-- 视频地址地址 -->
+          <input style="display: none;" name="vido_url" value="{{vido_url}}" class="input" type="text" />
+          <!-- 经纬度地址 -->
+          <input style="display: none;" name="longitude" value="{{longitude}}" class="input" type="text" />
+          <input style="display: none;" name="latitude" value="{{latitude}}" class="input" type="text" />
+
+    <mp-cell>
+        <view style="float: left; font-weight: bold;">视频上传：</view>
+        <image  hidden="{{vido_url!=''}}" bindtap="chooseVideo" style="margin-left: 4%; width: 200rpx; height: 200rpx;" src="../../img/upload.jpg"></image>
+        <!-- <image hidden="{{pic_url==''}}" style="margin-left: 4%; width: 200rpx; height: 200rpx;" src="{{pic_url}}"></image> -->
+        <view class="prew_video" hidden="{{vido_url==''}}">
+            <video bindfullscreenchange="bindVideoScreenChange" src="{{vido_url}}" binderror="videoErrorCallback" danmu-list="{{danmuList}}" enable-danmu danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls picture-in-picture-mode="{{['push', 'pop']}}" bindenterpictureinpicture='bindVideoEnterPictureInPicture' bindleavepictureinpicture='bindVideoLeavePictureInPicture'></video>
+          </view>
+          
+    </mp-cell>
+    <mp-cell>
+        <view style="float: left; font-weight: bold;">上传地址：</view>
+        <input style="float: left; width: 330rpx; font-size: 25rpx;" bindtap="showMap" name="map"  type="text" placeholder="请输入" value="{{locationName}}" disabled />
+        <view style="font-size: 25rpx;" slot="footer">点击上传地址</view>
+    </mp-cell>
+</mp-cells>
+<button form-type="submit" style="color: white; background-color: #07C160; width: 90%; margin: 20rpx auto;">提交信息</button>
+<view style="height: 200rpx; width: 100%;"></view>
+</form>

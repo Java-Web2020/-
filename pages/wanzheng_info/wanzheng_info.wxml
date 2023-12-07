@@ -1,0 +1,96 @@
+<!--pages/wanzheng_info/wanzheng_info.wxml-->
+
+<image bindtap="topic_preview" mode="aspectFit"  class="head" src="https://www.jzdcnswt.com/media/{{list.head_port}}"></image>
+<view class="top">
+  <button hidden="{{manage=='2'}}" bindtap="huizhi" size="mini" style="background-color: rgb(7, 193, 96); height: 40rpx; font-size: 20rpx; line-height: 40rpx; float: right; color: white; border-radius: 5px;" bindtap="huizhi"   >发送已收到短信</button>
+<view style="font-size: 30rpx; font-weight: bold;">
+{{list.username}}
+</view>
+<!-- <button bindtap="huizhi"  class="huizhi" size="mini" style="float: right;">发送已收到短信</button> -->
+
+<view style="font-size: 23rpx;">
+{{list.ceeated_time}}
+</view>
+<view style="height: 150rpx;font-size: 22rpx; color: rgb(133, 125, 125); margin-top: 10rpx; width: 70%;" >
+  {{list.propose}}
+</view>
+<image class="video_pic" hidden="{{list.vido==''}}"  bindtap="cksp"  data-vido="{{list.vido}}" src="../../img/video.jpg"></image>
+<view bindtap="dh" data-latitude="{{item.latitude}}"data-longitude="{{item.longitude}}"data-map="{{item.map}}" bindtap="dh" style=" color: rgb(133, 125, 125);height:80rpx;line-height: 80rpx; font-size: 27rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+  {{list.map}}
+</view>
+<!-- <button hidden="{{list.vido==''}}"size="mini" style="height: 30rpx; font-size: 20rpx; line-height: 30rpx; float: right; color: red;" bindtap="cksp"  data-vido="{{list.vido}}" >查看视频</button> -->
+</view>
+<view  class="duanxin" wx:if="{{list.status=='未处理'}}">
+  <form action="" bindsubmit="_tijiao">
+  <radio-group style="float: left;" class="radio-group" bindchange="radioChange" name="radio_group" wx:if="{{list.status=='未处理'}}">
+                <radio class="radio" style="margin-right: 40rpx;" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                    <text>{{item.value}}</text>
+                </radio>
+</radio-group>
+<radio-group  style="float: left; margin-left: 30rpx;  margin-top: 30rpx; font-size: 20rpx;" class="radio-group" name="radio_group2" wx:if="{{show_dx}}">
+                <radio style="width: 100%;" class="radio" wx:for-items="{{items_dx}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                    <text>{{item.value}}</text>
+                </radio>
+</radio-group>
+<!-- 回复 -->
+<textarea wx:if="{{list.status=='未处理'}}"  name="reply" 	placeholder="如无需要回复的文本，请直接点击提交" fixed class="input"  style="width:96%;height: 100px;text-align: left; padding: 2%; font-size: 23rpx; background-color: antiquewhite; margin-top: 10rpx;"/>
+  <view wx:if="{{list.status=='未处理'}}" class="weui-cells weui-cells_after-title" style="margin-bottom: 100rpx; background-color: #eeedff; border: none;">
+          <view  class="weui-cell" style=" background-color:  rgb(240, 239, 244); border: none;">
+            <view class="weui-cell__bd">
+                  <mp-uploader style="background-color:  rgb(240, 239, 244);" files="{{files}}" bindselect="_selectImage" binddelete="_deleteImage"upload="{{uplaodFile}}">
+                  </mp-uploader>
+            </view>
+          </view>
+        </view>
+
+
+
+<button  wx:if="{{list.status=='未处理'}}" class="dialog-btn" form-type="submit">提交</button>
+  </form>
+</view>
+
+<view class="bottom" wx:if="{{list.status!='未处理'}}">
+  <view style="font-size: 30rpx; font-weight: bold;">
+{{list.status}}
+</view>
+<view style="font-size: 20rpx;">
+{{list.updated_time}}
+</view>
+<view style="height: 100rpx;font-size: 20rpx; color: rgb(133, 125, 125);" >
+{{list.reply}}
+</view>
+<image bindtap="huifu_datu"  src="{{list.picture_reply_url}}"></image>
+</view>
+<!-- 
+  <view class="bottom" wx:if="{{list.status!='未处理'}}">
+  <view style="font-size: 30rpx; font-weight: bold;">
+{{list.status}}
+</view>
+<view style="font-size: 20rpx;">
+{{list.updated_time}}
+</view>
+<view style="height: 100rpx;font-size: 20rpx; color: rgb(133, 125, 125);" >
+{{list.reply}}
+</view>
+<image src="{{list.picture_reply_url}}"></image>
+</view>
+<form action="" bindsubmit="_tijiao">
+  <radio-group style="float: left;" class="radio-group" bindchange="radioChange" name="radio_group" wx:if="{{list.status=='未处理'}}">
+                <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                    <text>{{item.value}}</text>
+                </radio>
+</radio-group>
+<button bindtap="huizhi" style="float: right;">发送回执短信</button>
+  <textarea wx:if="{{list.status=='未处理'}}"  name="reply" 	placeholder="如无需要回复的文本，请直接点击发送，跳转短信回复页面" fixed class="input"  style="width:96%;height: 100px;text-align: left; padding: 2%; font-size: 23rpx; background-color: antiquewhite; margin-top: 10rpx;"/>
+  <view wx:if="{{list.status=='未处理'}}" class="weui-cells weui-cells_after-title" style="margin-bottom: 100rpx; background-color: #eeedff; border: none;">
+          <view  class="weui-cell" style=" background-color:  rgb(240, 239, 244); border: none;">
+            <view class="weui-cell__bd">
+                  <mp-uploader style="background-color:  rgb(240, 239, 244);" files="{{files}}" bindselect="_selectImage" binddelete="_deleteImage"upload="{{uplaodFile}}">
+                  </mp-uploader>
+            </view>
+          </view>
+        </view>
+<button  wx:if="{{list.status=='未处理'}}" class="dialog-btn" form-type="submit">发送</button>
+
+</form> -->
+
